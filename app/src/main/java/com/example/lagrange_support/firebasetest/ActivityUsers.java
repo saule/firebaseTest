@@ -2,6 +2,7 @@ package com.example.lagrange_support.firebasetest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -61,24 +62,10 @@ public class ActivityUsers  extends AppCompatActivity{
                 }
             }
         };
+      //  getUsers();
 
-        btnAccountPage=findViewById(R.id.btnAccountPage_act_users);
-        btnAccountPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(ActivityUsers.this, ActivityAccount.class);
-                startActivity(intent);
-            }
-        });
 
-      /*  btnAccountPage1=findViewById(R.id.btnAccountPage_user_row);
-        btnAccountPage1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(ActivityUsers.this, ActivityAccount.class);
-                startActivity(intent);
-            }
-        });*/
+
     }
 
     private static class UserDB{
@@ -103,8 +90,8 @@ public class ActivityUsers  extends AppCompatActivity{
                     name=item.child("name").getValue().toString();
                     image=item.child("image").getValue().toString();
                     UserDB entry=new UserDB(name, image);
-                    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                    System.out.println(entry.name);
+                   // System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    //System.out.println(entry.name);
                     entries.add(entry);
 
                 }
@@ -134,7 +121,7 @@ public class ActivityUsers  extends AppCompatActivity{
 
         @Override
         public RecUsersAdapter.RecViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(context).inflate(R.layout.user_row,null);
+            View view = LayoutInflater.from(context).inflate(R.layout.user_row,parent, false);
             return new RecViewHolder(view);
         }
 
@@ -142,16 +129,16 @@ public class ActivityUsers  extends AppCompatActivity{
         public void onBindViewHolder(RecUsersAdapter.RecViewHolder holder, int position) {
             UserDB user=entries.get(position);
 
-            try {
-                if (!user.image.equals("default")) {
-                    Picasso.with(context).load(user.image).fit().centerCrop().into(holder.imageView);
-                }
 
+                if (!user.image.equals("default")) {
+                    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+user.image);
+                    Picasso.with(context).load(Uri.parse(user.image)).into(holder.imageView);
+
+                }
+            System.out.println(user.name);
                 holder.textView.setText(user.name);
 
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+
         }
 
         @Override

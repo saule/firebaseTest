@@ -11,10 +11,11 @@
         android:layout_height="match_parent"
         android:id="@+id/txtUser_userRow"/>
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@mipmap/ic_launcher"
-        android:id="@+id/imageUser_user_row"/>
+        android:id="@+id/imageUser_user_row"
+        />
 
 
 </RelativeLayout>

@@ -27,7 +27,9 @@
         <activity android:name=".ActivityAccount">
 
         </activity>
-        <activity android:name=".ActivityUsers"/>
+        <activity android:name=".ActivityUsers">
+
+        </activity>
     </application>
 
 </manifest>
